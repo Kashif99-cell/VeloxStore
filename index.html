@@ -95,7 +95,7 @@
             font-size: 14px;
         }
 
-        /* Category Banners */
+        /* Category Banners / Tabs */
         .category-banners {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -111,6 +111,13 @@
             font-weight: 900;
             letter-spacing: 2px;
             box-shadow: 0 4px 15px rgba(185, 28, 28, 0.4);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .cat-card.active {
+            border-color: #ffffff;
+            transform: scale(1.02);
         }
         .cat-card.economy {
             background: linear-gradient(45deg, #d97706, #b45309);
@@ -165,6 +172,14 @@
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        /* Section Display Control */
+        .store-section {
+            display: none;
+        }
+        .store-section.active-section {
+            display: block;
         }
 
         /* Modal & Form */
@@ -263,7 +278,7 @@
     </header>
 
     <div class="container">
-        <!-- Hero Section with Actual Logo -->
+        <!-- Hero Section -->
         <div class="hero">
             <img src="logo.png" alt="ChaosPhageSMP Logo" class="banner-logo">
             <div>
@@ -272,66 +287,71 @@
             </div>
         </div>
 
+        <!-- Category Tab Buttons -->
         <div class="category-banners">
-            <div class="cat-card">RANKS</div>
-            <div class="cat-card economy">ECONOMY</div>
+            <div id="btnRanks" class="cat-card active" onclick="switchTab('ranks')">RANKS</div>
+            <div id="btnCoins" class="cat-card economy" onclick="switchTab('coins')">COINS</div>
         </div>
 
-        <!-- RANKS -->
-        <h2 class="section-heading">👑 SERVER RANKS</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>VIP RANK</h3>
-                <p>Special VIP privileges</p>
-                <div class="price">Rs. 200</div>
-                <button onclick="openBuyModal('VIP Rank')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>VIP+ RANK</h3>
-                <p>Advanced VIP perks</p>
-                <div class="price">Rs. 400</div>
-                <button onclick="openBuyModal('VIP+ Rank')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>MVP RANK</h3>
-                <p>Exclusive MVP privileges</p>
-                <div class="price">Rs. 700</div>
-                <button onclick="openBuyModal('MVP Rank')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>MVP+ RANK</h3>
-                <p>Premium perks & features</p>
-                <div class="price">Rs. 1200</div>
-                <button onclick="openBuyModal('MVP+ Rank')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>LEGEND RANK</h3>
-                <p>Ultimate server rank</p>
-                <div class="price">Rs. 2500</div>
-                <button onclick="openBuyModal('LEGEND Rank')" class="buy-btn">Buy Now</button>
+        <!-- RANKS SECTION -->
+        <div id="ranksSection" class="store-section active-section">
+            <h2 class="section-heading">👑 SERVER RANKS</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>VIP RANK</h3>
+                    <p>Special VIP privileges</p>
+                    <div class="price">Rs. 200</div>
+                    <button onclick="openBuyModal('VIP Rank')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>VIP+ RANK</h3>
+                    <p>Advanced VIP perks</p>
+                    <div class="price">Rs. 400</div>
+                    <button onclick="openBuyModal('VIP+ Rank')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>MVP RANK</h3>
+                    <p>Exclusive MVP privileges</p>
+                    <div class="price">Rs. 700</div>
+                    <button onclick="openBuyModal('MVP Rank')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>MVP+ RANK</h3>
+                    <p>Premium perks & features</p>
+                    <div class="price">Rs. 1200</div>
+                    <button onclick="openBuyModal('MVP+ Rank')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>LEGEND RANK</h3>
+                    <p>Ultimate server rank</p>
+                    <div class="price">Rs. 2500</div>
+                    <button onclick="openBuyModal('LEGEND Rank')" class="buy-btn">Buy Now</button>
+                </div>
             </div>
         </div>
 
-        <!-- ECONOMY -->
-        <h2 class="section-heading">🪙 ECONOMY & COINS</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>50 COINS</h3>
-                <p>In-game coins pack</p>
-                <div class="price">Rs. 250</div>
-                <button onclick="openBuyModal('50 Coins')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>100 COINS</h3>
-                <p>In-game coins pack</p>
-                <div class="price">Rs. 500</div>
-                <button onclick="openBuyModal('100 Coins')" class="buy-btn">Buy Now</button>
-            </div>
-            <div class="card">
-                <h3>1000 COINS</h3>
-                <p>In-game mega coins pack</p>
-                <div class="price">Rs. 2000</div>
-                <button onclick="openBuyModal('1000 Coins')" class="buy-btn">Buy Now</button>
+        <!-- COINS SECTION (Economy) -->
+        <div id="coinsSection" class="store-section">
+            <h2 class="section-heading">🪙 SERVER COINS</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>50 COINS</h3>
+                    <p>In-game coins pack</p>
+                    <div class="price">Rs. 250</div>
+                    <button onclick="openBuyModal('50 Coins')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>100 COINS</h3>
+                    <p>In-game coins pack</p>
+                    <div class="price">Rs. 500</div>
+                    <button onclick="openBuyModal('100 Coins')" class="buy-btn">Buy Now</button>
+                </div>
+                <div class="card">
+                    <h3>1000 COINS</h3>
+                    <p>In-game mega coins pack</p>
+                    <div class="price">Rs. 2000</div>
+                    <button onclick="openBuyModal('1000 Coins')" class="buy-btn">Buy Now</button>
+                </div>
             </div>
         </div>
     </div>
@@ -395,6 +415,26 @@
             e.preventDefault();
             alert("Login Successful!");
             closeModal('loginModal');
+        }
+
+        // Tab Switching Logic for Ranks and Coins
+        function switchTab(tabName) {
+            const ranksSec = document.getElementById('ranksSection');
+            const coinsSec = document.getElementById('coinsSection');
+            const btnRanks = document.getElementById('btnRanks');
+            const btnCoins = document.getElementById('btnCoins');
+
+            if(tabName === 'ranks') {
+                ranksSec.classList.add('active-section');
+                coinsSec.classList.remove('active-section');
+                btnRanks.classList.add('active');
+                btnCoins.classList.remove('active');
+            } else {
+                coinsSec.classList.add('active-section');
+                ranksSec.classList.remove('active-section');
+                btnCoins.classList.add('active');
+                btnRanks.classList.remove('active');
+            }
         }
     </script>
 </body>
