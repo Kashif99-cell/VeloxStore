@@ -424,33 +424,27 @@
             <div id="ranksGridView">
                 <h2 class="section-heading">👑 SERVER RANKS</h2>
                 <div class="grid-container">
-                    <div class="card" onclick="showRankDetail('vip')">
-                        <h3>VIP RANK</h3>
-                        <p>Special VIP privileges</p>
-                        <div class="price">Rs. 200</div>
+                    <div class="card" onclick="showRankDetail('goblin')">
+                        <h3>GOBLIN</h3>
+                        <p>Goblin rank economy</p>
+                        <div class="price">Rs. 350</div>
                         <button class="buy-btn">View Perks</button>
                     </div>
-                    <div class="card" onclick="showRankDetail('vipplus')">
-                        <h3>VIP+ RANK</h3>
-                        <p>Advanced VIP perks</p>
-                        <div class="price">Rs. 400</div>
+                    <div class="card" onclick="showRankDetail('luminous')">
+                        <h3>LUMINOUS</h3>
+                        <p>Luminous rank in economy</p>
+                        <div class="price">Rs. 750</div>
                         <button class="buy-btn">View Perks</button>
                     </div>
-                    <div class="card" onclick="showRankDetail('mvp')">
-                        <h3>MVP RANK</h3>
-                        <p>Exclusive MVP privileges</p>
-                        <div class="price">Rs. 700</div>
+                    <div class="card" onclick="showRankDetail('pie')">
+                        <h3>PIE [MONTHLY]</h3>
+                        <p>Pie rank monthly pass</p>
+                        <div class="price">Rs. 1500</div>
                         <button class="buy-btn">View Perks</button>
                     </div>
-                    <div class="card" onclick="showRankDetail('mvpplus')">
-                        <h3>MVP+ RANK</h3>
-                        <p>Premium perks & features</p>
-                        <div class="price">Rs. 1200</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                    <div class="card" onclick="showRankDetail('legend')">
-                        <h3>LEGEND RANK</h3>
-                        <p>Ultimate server rank</p>
+                    <div class="card" onclick="showRankDetail('revenant')">
+                        <h3>REVENANT</h3>
+                        <p>Revenant rank in economy</p>
                         <div class="price">Rs. 2500</div>
                         <button class="buy-btn">View Perks</button>
                     </div>
@@ -464,11 +458,11 @@
                 <div class="product-detail-card">
                     <div class="product-header">
                         <div class="product-title-area">
-                            <h2 id="detailTitle">VIP RANK</h2>
-                            <p id="detailDesc">Special VIP privileges for ChaosPhageSMP</p>
+                            <h2 id="detailTitle">GOBLIN</h2>
+                            <p id="detailDesc">Goblin rank economy package</p>
                         </div>
                         <div class="product-pricing-area">
-                            <div class="product-price" id="detailPrice">Rs. 200</div>
+                            <div class="product-price" id="detailPrice">Rs. 350</div>
                             <button class="quick-buy-btn" onclick="openBuyModal(document.getElementById('detailTitle').innerText)">Quick Buy</button>
                         </div>
                     </div>
@@ -554,62 +548,48 @@
 
     <script>
         const rankData = {
-            vip: {
-                title: "VIP RANK",
-                desc: "Special VIP privileges for ChaosPhageSMP",
-                price: "Rs. 200",
+            goblin: {
+                title: "GOBLIN",
+                desc: "Goblin rank economy package for ChaosPhageSMP",
+                price: "Rs. 350",
                 perks: [
                     "Access to /workbench",
                     "Access to /enderchest",
-                    "Access to /feed",
-                    "5 Homes limit",
-                    "VIP Prefix in chat",
-                    "Access to VIP Kit"
+                    "3 Homes limit",
+                    "Goblin Prefix in chat",
+                    "Access to Goblin Kit"
                 ]
             },
-            vipplus: {
-                title: "VIP+ RANK",
-                desc: "Advanced VIP perks and utilities",
-                price: "Rs. 400",
+            luminous: {
+                title: "LUMINOUS",
+                desc: "Luminous rank economy package",
+                price: "Rs. 750",
                 perks: [
                     "Access to /workbench & /anvil",
                     "Access to /enderchest",
                     "Access to /ptime",
                     "10 Homes limit",
-                    "VIP+ Prefix in chat",
-                    "Access to VIP+ Kit"
+                    "Luminous Prefix in chat",
+                    "Access to Luminous Kit"
                 ]
             },
-            mvp: {
-                title: "MVP RANK",
-                desc: "Exclusive MVP privileges & commands",
-                price: "Rs. 700",
-                perks: [
-                    "Access to Premium Shop",
-                    "Access to /workbench, /anvil, /grindstone",
-                    "Access to /enderchest & /ptime",
-                    "No RTP cooldown",
-                    "20 Homes limit",
-                    "MVP Prefix & Kit"
-                ]
-            },
-            mvpplus: {
-                title: "MVP+ RANK",
-                desc: "Premium perks and enhanced features",
-                price: "Rs. 1200",
+            pie: {
+                title: "PIE [MONTHLY]",
+                desc: "Pie rank monthly subscription plan",
+                price: "Rs. 1500",
                 perks: [
                     "Access to Premium Shop",
                     "Access to /workbench, /anvil, /grindstone, /disposal",
                     "Access to /enderchest & /ptime",
                     "No RTP cooldown",
                     "Queue Bypass",
-                    "35 Homes limit",
-                    "MVP+ Prefix & Kit"
+                    "30 Homes limit",
+                    "Pie Prefix & Kit"
                 ]
             },
-            legend: {
-                title: "LEGEND RANK",
-                desc: "Ultimate server rank with all permissions",
+            revenant: {
+                title: "REVENANT",
+                desc: "Ultimate Revenant rank with all permissions",
                 price: "Rs. 2500",
                 perks: [
                     "Access to Premium Shop",
@@ -618,7 +598,7 @@
                     "No RTP cooldown",
                     "Queue Bypass",
                     "60 Homes limit",
-                    "LEGEND++ Prefix & Kit"
+                    "Revenant++ Prefix & Kit"
                 ]
             }
         };
