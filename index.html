@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChaosPhageSMP | Store</title>
+    <title>ChaosPhageSMP | Official Store</title>
     <style>
         * {
             margin: 0;
@@ -32,17 +32,18 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+        .server-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #f59e0b;
         }
         .brand h1 {
             font-size: 20px;
             color: #f59e0b;
             letter-spacing: 1px;
-        }
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
         .login-btn {
             background-color: #f59e0b;
@@ -52,22 +53,18 @@
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
         .login-btn:hover {
             background-color: #d97706;
         }
 
-        /* Container */
         .container {
             max-width: 900px;
             margin: 20px auto;
             padding: 0 15px;
         }
 
-        /* Hero / Server IP Banner */
+        /* Banner Hero */
         .hero {
             background: linear-gradient(135deg, #1e1b4b, #311042);
             border-radius: 15px;
@@ -75,18 +72,28 @@
             text-align: center;
             margin-bottom: 30px;
             border: 1px solid #4c1d95;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .banner-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
         }
         .hero h2 {
             font-size: 28px;
             color: #fbbf24;
-            margin-bottom: 8px;
         }
         .hero p {
             color: #94a3b8;
             font-size: 14px;
         }
 
-        /* Category Cards (Video Style) */
+        /* Headings & Banners */
         .category-banners {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -95,22 +102,19 @@
         }
         .cat-card {
             background: linear-gradient(45deg, #b91c1c, #991b1b);
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             text-align: center;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
-            text-transform: uppercase;
             letter-spacing: 2px;
             box-shadow: 0 4px 15px rgba(185, 28, 28, 0.4);
-            cursor: pointer;
         }
         .cat-card.economy {
             background: linear-gradient(45deg, #d97706, #b45309);
             box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
         }
 
-        /* Section Headings */
         .section-heading {
             font-size: 22px;
             color: #f59e0b;
@@ -119,7 +123,6 @@
             padding-left: 10px;
         }
 
-        /* Products Grid */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -161,18 +164,15 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .buy-btn:hover {
-            background-color: #1d4ed8;
-        }
 
-        /* Modals (Login & Buy) */
+        /* Modal & Form Styling */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             display: none;
             justify-content: center;
             align-items: center;
@@ -183,18 +183,46 @@
             padding: 25px;
             border-radius: 14px;
             width: 90%;
-            max-width: 360px;
+            max-width: 380px;
             text-align: center;
             border: 1px solid #3b4261;
         }
         .modal-box h3 {
             color: #f59e0b;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            text-align: left;
             margin-bottom: 12px;
         }
-        .modal-box p {
+        .form-group label {
+            display: block;
+            font-size: 12px;
             color: #cbd5e1;
-            font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 4px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #3b4261;
+            background: #0d0f17;
+            color: #ffffff;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: #f59e0b;
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: #f59e0b;
+            color: #0d0f17;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
         }
         .discord-btn {
             display: block;
@@ -204,7 +232,7 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin: 15px 0 10px 0;
         }
         .close-btn {
             background-color: #ef4444;
@@ -214,6 +242,7 @@
             border-radius: 6px;
             cursor: pointer;
             width: 100%;
+            margin-top: 8px;
         }
 
         footer {
@@ -226,30 +255,31 @@
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <header>
         <div class="brand">
+            <div class="server-logo" style="background:#b91c1c; display:flex; align-items:center; justify-content:center; font-weight:bold;">CPS</div>
             <h1>ChaosPhageSMP</h1>
         </div>
-        <div class="nav-right">
-            <button onclick="openLoginModal()" class="login-btn">➡️ Login</button>
-        </div>
+        <button onclick="openLoginModal()" class="login-btn">➡️ Login</button>
     </header>
 
     <div class="container">
-        <!-- Hero Section -->
+        <!-- Hero Section with Logo -->
         <div class="hero">
-            <h2>Welcome to ChaosPhageSMP</h2>
-            <p>Official Minecraft Server Store</p>
+            <div class="banner-logo" style="background:#b91c1c; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:24px;">CPS</div>
+            <div>
+                <h2>Welcome to ChaosPhageSMP</h2>
+                <p>Official Minecraft Server Store</p>
+            </div>
         </div>
 
-        <!-- Banners Category (From Video) -->
         <div class="category-banners">
             <div class="cat-card">RANKS</div>
             <div class="cat-card economy">ECONOMY</div>
         </div>
 
-        <!-- RANKS SECTION -->
+        <!-- RANKS -->
         <h2 class="section-heading">👑 SERVER RANKS</h2>
         <div class="grid-container">
             <div class="card">
@@ -284,7 +314,7 @@
             </div>
         </div>
 
-        <!-- ECONOMY / COINS SECTION -->
+        <!-- ECONOMY -->
         <h2 class="section-heading">🪙 ECONOMY & COINS</h2>
         <div class="grid-container">
             <div class="card">
@@ -312,12 +342,32 @@
         &copy; 2026 ChaosPhageSMP. All Rights Reserved.
     </footer>
 
-    <!-- Login Modal -->
+    <!-- Account Login Modal -->
     <div id="loginModal" class="modal-overlay">
         <div class="modal-box">
-            <h3>Sign in to get started</h3>
-            <p>Link your Discord account to manage purchases.</p>
-            <a href="https://discord.gg/rSHJeK8uV" target="_blank" class="discord-btn">Login with Discord</a>
+            <h3>Player Account Sign In</h3>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter password" required>
+                </div>
+                <div class="form-group">
+                    <label>In-Game Minecraft Username</label>
+                    <input type="text" placeholder="Minecraft Username" required>
+                </div>
+                <div class="form-group">
+                    <label>Discord Tag / Username</label>
+                    <input type="text" placeholder="username#0000" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Login Account</button>
+            </form>
+
             <button onclick="closeModal('loginModal')" class="close-btn">Close</button>
         </div>
     </div>
@@ -326,7 +376,7 @@
     <div id="buyModal" class="modal-overlay">
         <div class="modal-box">
             <h3 id="buyModalTitle">Purchase Item</h3>
-            <p>Order place karne ke liye Discord server join karke ticket create karein!</p>
+            <p style="color:#cbd5e1; font-size:14px; margin-bottom:15px;">Order place karne ke liye Discord server join karke ticket create karein!</p>
             <a href="https://discord.gg/rSHJeK8uV" target="_blank" class="discord-btn">Join Discord Server</a>
             <button onclick="closeModal('buyModal')" class="close-btn">Close</button>
         </div>
@@ -342,6 +392,11 @@
         }
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            alert("Login Successful!");
+            closeModal('loginModal');
         }
     </script>
 </body>
