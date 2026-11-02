@@ -434,7 +434,7 @@
         <!-- RANKS SECTION -->
         <div id="ranksSection" class="store-section">
             
-            <!-- Ranks Grid View with Images -->
+            <!-- Ranks Grid View -->
             <div id="ranksGridView">
                 <h2 class="section-heading">👑 SERVER RANKS</h2>
                 <div class="grid-container">
@@ -573,6 +573,14 @@
     </div>
 
     <script>
+        // Check if already logged in on page load
+        window.onload = function() {
+            const savedUser = localStorage.getItem('chaos_username');
+            if (savedUser) {
+                setLoggedInUI(savedUser);
+            }
+        };
+
         const rankData = {
             vip: {
                 title: "VIP RANK",
@@ -687,9 +695,24 @@
         function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById('mcUsernameInput').value;
-            const authArea = document.getElementById('authArea');
-            authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;">👤 ${username}</button>`;
+            
+            // Save to LocalStorage so it persists on refresh
+            localStorage.setItem('chaos_username', username);
+            setLoggedInUI(username);
+            
             closeModal('loginModal');
+        }
+
+        function setLoggedInUI(username) {
+            const authArea = document.getElementById('authArea');
+            authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;" onclick="handleLogout()" title="Click to Logout">👤 ${username} 🔄</button>`;
+        }
+
+        function handleLogout() {
+            if(confirm("Kya aap account logout karna chahte hain?")) {
+                localStorage.removeItem('chaos_username');
+                location.reload();
+            }
         }
 
         function switchTab(tabName) {
