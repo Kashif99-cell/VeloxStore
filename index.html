@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+q<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,231 +61,125 @@
             text-align: center;
             margin: 30px 0 15px 0;
             font-size: 24px;
-            border-bottom: 2px solid #1e293b;
-            padding-bottom: 10px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background-color: #1e293b;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card h3 {
-            color: #f59e0b;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        .card p {
-            color: #cbd5e1;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        .price {
-            display: block;
-            font-size: 18px;
-            color: #38bdf8;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        .buy-btn {
-            background-color: #f59e0b;
-            color: #0f172a;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
-        .buy-btn:hover {
-            background-color: #d97706;
-        }
+            <body>
 
-        /* Popup Modal Styles */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .popup-content {
-            background: #1e293b;
-            color: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            width: 90%;
-            max-width: 350px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .popup-content h3 {
-            color: #f59e0b;
-            margin-bottom: 10px;
-        }
-        .popup-content p {
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #cbd5e1;
-        }
-        .discord-btn {
-            display: block;
-            background-color: #5865F2;
-            color: white;
-            padding: 10px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .discord-btn:hover {
-            background-color: #4752C4;
-        }
-        .close-btn {
-            background-color: #ef4444;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-        }
-        .close-btn:hover {
-            background-color: #dc2626;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #94a3b8;
-            font-size: 13px;
-            background-color: #1e293b;
-            margin-top: 40px;
-        }
-    </style>
-</head>
-<body>
-
+    <!-- Header / Navbar -->
     <header>
-        <h1>VELOXSTORE</h1>
-        <p>Minecraft Java & Bedrock Store</p>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Store</a>
-            <a href="https://discord.gg/rSHJeK8uV" target="_blank">Discord</a>
+        <div class="brand">
+            <h1>ChaosPhageSMP</h1>
+        </div>
+        <div class="nav-right">
+            <button onclick="openLoginModal()" class="login-btn">➡️ Login</button>
         </div>
     </header>
 
     <div class="container">
+        <!-- Hero Section -->
         <div class="hero">
-            <h2>WELCOME TO VELOXSTORE</h2>
-            <p>Discover amazing Minecraft ranks and items!</p>
+            <h2>Welcome to ChaosPhageSMP</h2>
+            <p>Official Minecraft Server Store</p>
         </div>
 
-        <!-- SERVER RANKS SECTION -->
-        <h2 class="section-title">👑 SERVER RANKS</h2>
+        <!-- Banners Category (From Video) -->
+        <div class="category-banners">
+            <div class="cat-card">RANKS</div>
+            <div class="cat-card economy">ECONOMY</div>
+        </div>
+
+        <!-- RANKS SECTION -->
+        <h2 class="section-heading">👑 SERVER RANKS</h2>
         <div class="grid-container">
             <div class="card">
                 <h3>VIP RANK</h3>
                 <p>Special VIP privileges</p>
-                <span class="price">Rs. 200</span>
-                <button onclick="openPopup('VIP Rank')" class="buy-btn">Buy Now</button>
+                <div class="price">Rs. 200</div>
+                <button onclick="openBuyModal('VIP Rank')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>VIP+ RANK</h3>
-                <p>Advanced VIP perks & features</p>
-                <span class="price">Rs. 400</span>
-                <button onclick="openPopup('VIP+ Rank')" class="buy-btn">Buy Now</button>
+                <p>Advanced VIP perks</p>
+                <div class="price">Rs. 400</div>
+                <button onclick="openBuyModal('VIP+ Rank')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>MVP RANK</h3>
                 <p>Exclusive MVP privileges</p>
-                <span class="price">Rs. 700</span>
-                <button onclick="openPopup('MVP Rank')" class="buy-btn">Buy Now</button>
+                <div class="price">Rs. 700</div>
+                <button onclick="openBuyModal('MVP Rank')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>MVP+ RANK</h3>
-                <p>Premium MVP+ perks & commands</p>
-                <span class="price">Rs. 1200</span>
-                <button onclick="openPopup('MVP+ Rank')" class="buy-btn">Buy Now</button>
+                <p>Premium perks & features</p>
+                <div class="price">Rs. 1200</div>
+                <button onclick="openBuyModal('MVP+ Rank')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>LEGEND RANK</h3>
-                <p>Ultimate server rank & all access</p>
-                <span class="price">Rs. 2500</span>
-                <button onclick="openPopup('LEGEND Rank')" class="buy-btn">Buy Now</button>
+                <p>Ultimate server rank</p>
+                <div class="price">Rs. 2500</div>
+                <button onclick="openBuyModal('LEGEND Rank')" class="buy-btn">Buy Now</button>
             </div>
         </div>
 
-        <!-- BUY COINS SECTION -->
-        <h2 class="section-title">🪙 BUY COINS</h2>
+        <!-- ECONOMY / COINS SECTION -->
+        <h2 class="section-heading">🪙 ECONOMY & COINS</h2>
         <div class="grid-container">
             <div class="card">
                 <h3>50 COINS</h3>
                 <p>In-game coins pack</p>
-                <span class="price">Rs. 250</span>
-                <button onclick="openPopup('50 Coins')" class="buy-btn">Buy Now</button>
+                <div class="price">Rs. 250</div>
+                <button onclick="openBuyModal('50 Coins')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>100 COINS</h3>
                 <p>In-game coins pack</p>
-                <span class="price">Rs. 500</span>
-                <button onclick="openPopup('100 Coins')" class="buy-btn">Buy Now</button>
+                <div class="price">Rs. 500</div>
+                <button onclick="openBuyModal('100 Coins')" class="buy-btn">Buy Now</button>
             </div>
-
             <div class="card">
                 <h3>1000 COINS</h3>
                 <p>In-game mega coins pack</p>
-                <span class="price">Rs. 2000</span>
-                <button onclick="openPopup('1000 Coins')" class="buy-btn">Buy Now</button>
+                <div class="price">Rs. 2000</div>
+                <button onclick="openBuyModal('1000 Coins')" class="buy-btn">Buy Now</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 VeloxStore. All Rights Reserved.</p>
-        <p>Minecraft Java & Bedrock</p>
+        &copy; 2026 ChaosPhageSMP. All Rights Reserved.
     </footer>
 
-    <!-- Popup Modal -->
-    <div id="discordPopup" class="popup-overlay">
-        <div class="popup-content">
-            <h3 id="popupTitle">Join Discord</h3>
-            <p>Kharidne ke liye pehle hamara Discord server join karein aur ticket create karein!</p>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Sign in to get started</h3>
+            <p>Link your Discord account to manage purchases.</p>
+            <a href="https://discord.gg/rSHJeK8uV" target="_blank" class="discord-btn">Login with Discord</a>
+            <button onclick="closeModal('loginModal')" class="close-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Buy Item Modal -->
+    <div id="buyModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="buyModalTitle">Purchase Item</h3>
+            <p>Order place karne ke liye Discord server join karke ticket create karein!</p>
             <a href="https://discord.gg/rSHJeK8uV" target="_blank" class="discord-btn">Join Discord Server</a>
-            <button onclick="closePopup()" class="close-btn">Band Karein</button>
+            <button onclick="closeModal('buyModal')" class="close-btn">Close</button>
         </div>
     </div>
 
     <script>
-        function openPopup(itemName) {
-            document.getElementById('popupTitle').innerText = "Buy " + itemName;
-            document.getElementById('discordPopup').style.display = 'flex';
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
         }
-
-        function closePopup() {
-            document.getElementById('discordPopup').style.display = 'none';
+        function openBuyModal(itemName) {
+            document.getElementById('buyModalTitle').innerText = "Buy " + itemName;
+            document.getElementById('buyModal').style.display = 'flex';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
     </script>
-
 </body>
 </html>
