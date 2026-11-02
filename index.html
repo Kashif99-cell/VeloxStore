@@ -95,33 +95,63 @@
             font-size: 14px;
         }
 
-        /* Category Tabs */
+        /* Category Tabs (Home, Ranks, Coins) */
         .category-banners {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             margin-bottom: 35px;
         }
         .cat-card {
-            background: linear-gradient(45deg, #b91c1c, #991b1b);
-            padding: 20px;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+            padding: 15px;
             border-radius: 12px;
             text-align: center;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 900;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 15px rgba(185, 28, 28, 0.4);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 2px solid #334155;
             transition: 0.3s;
+            color: #cbd5e1;
         }
         .cat-card.active {
-            border-color: #ffffff;
+            border-color: #f59e0b;
+            color: #f59e0b;
+            background: linear-gradient(45deg, #1e1b4b, #311042);
             transform: scale(1.02);
         }
-        .cat-card.economy {
-            background: linear-gradient(45deg, #d97706, #b45309);
-            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+
+        /* Orange IP Box */
+        .ip-box-container {
+            background: #161925;
+            border-radius: 14px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #2e354f;
+            margin-bottom: 25px;
+        }
+        .ip-box-container h3 {
+            color: #fbbf24;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+        .orange-ip {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0d0f17;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            user-select: all;
+            margin-bottom: 15px;
+        }
+        .ip-note {
+            color: #94a3b8;
+            font-size: 13px;
         }
 
         .section-heading {
@@ -284,18 +314,36 @@
             <img src="logo.png" alt="ChaosPhageSMP Logo" class="banner-logo">
             <div>
                 <h2>Welcome to ChaosPhageSMP</h2>
-                <p>Official Minecraft Server Store</p>
+                <p>Official Minecraft Server Store & Community</p>
             </div>
         </div>
 
-        <!-- Category Tab Buttons -->
+        <!-- Navigation Tabs -->
         <div class="category-banners">
-            <div id="btnRanks" class="cat-card active" onclick="switchTab('ranks')">RANKS</div>
-            <div id="btnCoins" class="cat-card economy" onclick="switchTab('coins')">COINS</div>
+            <div id="btnHome" class="cat-card active" onclick="switchTab('home')">🏠 HOME</div>
+            <div id="btnRanks" class="cat-card" onclick="switchTab('ranks')">👑 RANKS</div>
+            <div id="btnCoins" class="cat-card" onclick="switchTab('coins')">🪙 COINS</div>
+        </div>
+
+        <!-- HOME SECTION (Default Landing Page) -->
+        <div id="homeSection" class="store-section active-section">
+            <h2 class="section-heading">🌟 SERVER INFORMATION</h2>
+            
+            <div class="ip-box-container">
+                <h3>Server IP Address</h3>
+                <div class="orange-ip">chaosphagesmp.play.hosting</div>
+                <p class="ip-note">Click karke copy karein aur Minecraft Java/Bedrock mein join karein!</p>
+            </div>
+
+            <div class="ip-box-container">
+                <h3>Official Discord Community</h3>
+                <p style="color:#cbd5e1; margin-bottom:15px; font-size:14px;">Hamare Discord server ko join karke support ticket banayein aur giveaway mein hissa lein!</p>
+                <a href="https://discord.gg/wKtxE5AfU" target="_blank" class="discord-btn">Join Discord Server</a>
+            </div>
         </div>
 
         <!-- RANKS SECTION -->
-        <div id="ranksSection" class="store-section active-section">
+        <div id="ranksSection" class="store-section">
             <h2 class="section-heading">👑 SERVER RANKS</h2>
             <div class="grid-container">
                 <div class="card">
@@ -396,7 +444,7 @@
         <div class="modal-box">
             <h3 id="buyModalTitle">Purchase Item</h3>
             <p style="color:#cbd5e1; font-size:14px; margin-bottom:15px;">Order place karne ke liye Discord server join karke ticket create karein!</p>
-            <a href="https://discord.gg/rSHJeK8uV" target="_blank" class="discord-btn">Join Discord Server</a>
+            <a href="https://discord.gg/wKtxE5AfU" target="_blank" class="discord-btn">Join Discord Server</a>
             <button onclick="closeModal('buyModal')" class="close-btn">Close</button>
         </div>
     </div>
@@ -418,30 +466,39 @@
             e.preventDefault();
             const username = document.getElementById('mcUsernameInput').value;
             
-            // Update Top Right Button to show Logged In Username
             const authArea = document.getElementById('authArea');
             authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;">👤 ${username}</button>`;
             
             closeModal('loginModal');
         }
 
-        // Tab Switching Logic for Ranks and Coins
+        // Tab Switching Logic for Home, Ranks, and Coins
         function switchTab(tabName) {
+            const homeSec = document.getElementById('homeSection');
             const ranksSec = document.getElementById('ranksSection');
             const coinsSec = document.getElementById('coinsSection');
+            
+            const btnHome = document.getElementById('btnHome');
             const btnRanks = document.getElementById('btnRanks');
             const btnCoins = document.getElementById('btnCoins');
 
-            if(tabName === 'ranks') {
+            homeSec.classList.remove('active-section');
+            ranksSec.classList.remove('active-section');
+            coinsSec.classList.remove('active-section');
+            
+            btnHome.classList.remove('active');
+            btnRanks.classList.remove('active');
+            btnCoins.classList.remove('active');
+
+            if(tabName === 'home') {
+                homeSec.classList.add('active-section');
+                btnHome.classList.add('active');
+            } else if(tabName === 'ranks') {
                 ranksSec.classList.add('active-section');
-                coinsSec.classList.remove('active-section');
                 btnRanks.classList.add('active');
-                btnCoins.classList.remove('active');
-            } else {
+            } else if(tabName === 'coins') {
                 coinsSec.classList.add('active-section');
-                ranksSec.classList.remove('active-section');
                 btnCoins.classList.add('active');
-                btnRanks.classList.remove('active');
             }
         }
     </script>
