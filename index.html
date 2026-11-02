@@ -95,7 +95,7 @@
             font-size: 14px;
         }
 
-        /* Category Banners / Tabs */
+        /* Category Tabs */
         .category-banners {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -174,7 +174,6 @@
             cursor: pointer;
         }
 
-        /* Section Display Control */
         .store-section {
             display: none;
         }
@@ -274,7 +273,9 @@
             <img src="logo.png" alt="Logo" class="server-logo">
             <h1>ChaosPhageSMP</h1>
         </div>
-        <button onclick="openLoginModal()" class="login-btn">➡️ Login</button>
+        <div id="authArea">
+            <button id="loginNavBtn" onclick="openLoginModal()" class="login-btn">➡️ Login</button>
+        </div>
     </header>
 
     <div class="container">
@@ -330,7 +331,7 @@
             </div>
         </div>
 
-        <!-- COINS SECTION (Economy) -->
+        <!-- COINS SECTION -->
         <div id="coinsSection" class="store-section">
             <h2 class="section-heading">🪙 SERVER COINS</h2>
             <div class="grid-container">
@@ -376,7 +377,7 @@
                 </div>
                 <div class="form-group">
                     <label>In-Game Minecraft Username</label>
-                    <input type="text" placeholder="Minecraft Username" required>
+                    <input type="text" id="mcUsernameInput" placeholder="Minecraft Username" required>
                 </div>
                 <div class="form-group">
                     <label>Discord Username</label>
@@ -411,9 +412,16 @@
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
+
+        // Handle Login and Update Navbar with Username
         function handleLogin(e) {
             e.preventDefault();
-            alert("Login Successful!");
+            const username = document.getElementById('mcUsernameInput').value;
+            
+            // Update Top Right Button to show Logged In Username
+            const authArea = document.getElementById('authArea');
+            authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;">👤 ${username}</button>`;
+            
             closeModal('loginModal');
         }
 
