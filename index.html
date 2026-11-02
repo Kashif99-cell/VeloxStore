@@ -210,7 +210,7 @@
             cursor: pointer;
         }
 
-        /* Product Detail View (Battlepie Style) */
+        /* Product Detail View */
         .product-detail-card {
             background-color: #161925;
             border-radius: 14px;
@@ -273,6 +273,10 @@
             cursor: pointer;
             margin-bottom: 15px;
             font-weight: bold;
+            padding: 6px 12px;
+            background: #161925;
+            border: 1px solid #3b4261;
+            border-radius: 6px;
         }
 
         .store-section {
@@ -413,10 +417,10 @@
             </div>
         </div>
 
-        <!-- RANKS SECTION (Grid + Detailed Views) -->
+        <!-- RANKS SECTION -->
         <div id="ranksSection" class="store-section">
             
-            <!-- Ranks Main Grid View -->
+            <!-- Ranks Grid View -->
             <div id="ranksGridView">
                 <h2 class="section-heading">👑 SERVER RANKS</h2>
                 <div class="grid-container">
@@ -453,7 +457,7 @@
                 </div>
             </div>
 
-            <!-- Rank Detail Pages (Hidden by default, opens on click) -->
+            <!-- Rank Detail View -->
             <div id="rankDetailView" style="display: none;">
                 <span class="back-link" onclick="backToRanksGrid()">⬅️ Back to Ranks</span>
                 
@@ -549,7 +553,6 @@
     </div>
 
     <script>
-        // Rank data for battlepie style pages
         const rankData = {
             vip: {
                 title: "VIP RANK",
@@ -636,10 +639,11 @@
 
             document.getElementById('ranksGridView').style.display = 'none';
             document.getElementById('rankDetailView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function backToRanksGrid() {
-            document.getElementById('ranksDetailView').style.display = 'none';
+            document.getElementById('rankDetailView').style.display = 'none';
             document.getElementById('ranksGridView').style.display = 'block';
         }
 
@@ -685,7 +689,7 @@
             } else if(tabName === 'ranks') {
                 ranksSec.classList.add('active-section');
                 btnRanks.classList.add('active');
-                backToRanksGrid(); // Reset to grid view
+                backToRanksGrid();
             } else if(tabName === 'coins') {
                 coinsSec.classList.add('active-section');
                 btnCoins.classList.add('active');
