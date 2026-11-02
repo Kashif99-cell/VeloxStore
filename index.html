@@ -95,7 +95,7 @@
             font-size: 14px;
         }
 
-        /* Category Tabs (Home, Ranks, Coins) */
+        /* Navigation Tabs */
         .category-banners {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -171,12 +171,18 @@
         .card {
             background-color: #161925;
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             border: 1px solid #2e354f;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-3px);
         }
         .card h3 {
             color: #fbbf24;
@@ -204,6 +210,71 @@
             cursor: pointer;
         }
 
+        /* Product Detail View (Battlepie Style) */
+        .product-detail-card {
+            background-color: #161925;
+            border-radius: 14px;
+            padding: 25px;
+            border: 1px solid #3b4261;
+            margin-bottom: 25px;
+        }
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #2e354f;
+            padding-bottom: 15px;
+        }
+        .product-title-area h2 {
+            color: #fbbf24;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .product-title-area p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .product-pricing-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .product-price {
+            font-size: 22px;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+        .quick-buy-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0d0f17;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        .perks-list {
+            list-style: none;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .perks-list li::before {
+            content: "— ";
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .back-link {
+            display: inline-block;
+            color: #38bdf8;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
         .store-section {
             display: none;
         }
@@ -211,7 +282,7 @@
             display: block;
         }
 
-        /* Modal & Form */
+        /* Modals */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -325,7 +396,7 @@
             <div id="btnCoins" class="cat-card" onclick="switchTab('coins')">🪙 COINS</div>
         </div>
 
-        <!-- HOME SECTION (Default Landing Page) -->
+        <!-- HOME SECTION -->
         <div id="homeSection" class="store-section active-section">
             <h2 class="section-heading">🌟 SERVER INFORMATION</h2>
             
@@ -342,41 +413,69 @@
             </div>
         </div>
 
-        <!-- RANKS SECTION -->
+        <!-- RANKS SECTION (Grid + Detailed Views) -->
         <div id="ranksSection" class="store-section">
-            <h2 class="section-heading">👑 SERVER RANKS</h2>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>VIP RANK</h3>
-                    <p>Special VIP privileges</p>
-                    <div class="price">Rs. 200</div>
-                    <button onclick="openBuyModal('VIP Rank')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>VIP+ RANK</h3>
-                    <p>Advanced VIP perks</p>
-                    <div class="price">Rs. 400</div>
-                    <button onclick="openBuyModal('VIP+ Rank')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>MVP RANK</h3>
-                    <p>Exclusive MVP privileges</p>
-                    <div class="price">Rs. 700</div>
-                    <button onclick="openBuyModal('MVP Rank')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>MVP+ RANK</h3>
-                    <p>Premium perks & features</p>
-                    <div class="price">Rs. 1200</div>
-                    <button onclick="openBuyModal('MVP+ Rank')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>LEGEND RANK</h3>
-                    <p>Ultimate server rank</p>
-                    <div class="price">Rs. 2500</div>
-                    <button onclick="openBuyModal('LEGEND Rank')" class="buy-btn">Buy Now</button>
+            
+            <!-- Ranks Main Grid View -->
+            <div id="ranksGridView">
+                <h2 class="section-heading">👑 SERVER RANKS</h2>
+                <div class="grid-container">
+                    <div class="card" onclick="showRankDetail('vip')">
+                        <h3>VIP RANK</h3>
+                        <p>Special VIP privileges</p>
+                        <div class="price">Rs. 200</div>
+                        <button class="buy-btn">View Perks</button>
+                    </div>
+                    <div class="card" onclick="showRankDetail('vipplus')">
+                        <h3>VIP+ RANK</h3>
+                        <p>Advanced VIP perks</p>
+                        <div class="price">Rs. 400</div>
+                        <button class="buy-btn">View Perks</button>
+                    </div>
+                    <div class="card" onclick="showRankDetail('mvp')">
+                        <h3>MVP RANK</h3>
+                        <p>Exclusive MVP privileges</p>
+                        <div class="price">Rs. 700</div>
+                        <button class="buy-btn">View Perks</button>
+                    </div>
+                    <div class="card" onclick="showRankDetail('mvpplus')">
+                        <h3>MVP+ RANK</h3>
+                        <p>Premium perks & features</p>
+                        <div class="price">Rs. 1200</div>
+                        <button class="buy-btn">View Perks</button>
+                    </div>
+                    <div class="card" onclick="showRankDetail('legend')">
+                        <h3>LEGEND RANK</h3>
+                        <p>Ultimate server rank</p>
+                        <div class="price">Rs. 2500</div>
+                        <button class="buy-btn">View Perks</button>
+                    </div>
                 </div>
             </div>
+
+            <!-- Rank Detail Pages (Hidden by default, opens on click) -->
+            <div id="rankDetailView" style="display: none;">
+                <span class="back-link" onclick="backToRanksGrid()">⬅️ Back to Ranks</span>
+                
+                <div class="product-detail-card">
+                    <div class="product-header">
+                        <div class="product-title-area">
+                            <h2 id="detailTitle">VIP RANK</h2>
+                            <p id="detailDesc">Special VIP privileges for ChaosPhageSMP</p>
+                        </div>
+                        <div class="product-pricing-area">
+                            <div class="product-price" id="detailPrice">Rs. 200</div>
+                            <button class="quick-buy-btn" onclick="openBuyModal(document.getElementById('detailTitle').innerText)">Quick Buy</button>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #f59e0b; margin-bottom: 12px; font-size: 16px;">ABOUT THIS PRODUCT (PERKS & COMMANDS)</h3>
+                    <ul class="perks-list" id="detailPerks">
+                        <!-- Perks injected via JS -->
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <!-- COINS SECTION -->
@@ -450,6 +549,100 @@
     </div>
 
     <script>
+        // Rank data for battlepie style pages
+        const rankData = {
+            vip: {
+                title: "VIP RANK",
+                desc: "Special VIP privileges for ChaosPhageSMP",
+                price: "Rs. 200",
+                perks: [
+                    "Access to /workbench",
+                    "Access to /enderchest",
+                    "Access to /feed",
+                    "5 Homes limit",
+                    "VIP Prefix in chat",
+                    "Access to VIP Kit"
+                ]
+            },
+            vipplus: {
+                title: "VIP+ RANK",
+                desc: "Advanced VIP perks and utilities",
+                price: "Rs. 400",
+                perks: [
+                    "Access to /workbench & /anvil",
+                    "Access to /enderchest",
+                    "Access to /ptime",
+                    "10 Homes limit",
+                    "VIP+ Prefix in chat",
+                    "Access to VIP+ Kit"
+                ]
+            },
+            mvp: {
+                title: "MVP RANK",
+                desc: "Exclusive MVP privileges & commands",
+                price: "Rs. 700",
+                perks: [
+                    "Access to Premium Shop",
+                    "Access to /workbench, /anvil, /grindstone",
+                    "Access to /enderchest & /ptime",
+                    "No RTP cooldown",
+                    "20 Homes limit",
+                    "MVP Prefix & Kit"
+                ]
+            },
+            mvpplus: {
+                title: "MVP+ RANK",
+                desc: "Premium perks and enhanced features",
+                price: "Rs. 1200",
+                perks: [
+                    "Access to Premium Shop",
+                    "Access to /workbench, /anvil, /grindstone, /disposal",
+                    "Access to /enderchest & /ptime",
+                    "No RTP cooldown",
+                    "Queue Bypass",
+                    "35 Homes limit",
+                    "MVP+ Prefix & Kit"
+                ]
+            },
+            legend: {
+                title: "LEGEND RANK",
+                desc: "Ultimate server rank with all permissions",
+                price: "Rs. 2500",
+                perks: [
+                    "Access to Premium Shop",
+                    "All utility commands (/workbench, /anvil, /grindstone, /disposal, /loom)",
+                    "Access to /enderchest, /ptime, /pweather",
+                    "No RTP cooldown",
+                    "Queue Bypass",
+                    "60 Homes limit",
+                    "LEGEND++ Prefix & Kit"
+                ]
+            }
+        };
+
+        function showRankDetail(rankKey) {
+            const data = rankData[rankKey];
+            document.getElementById('detailTitle').innerText = data.title;
+            document.getElementById('detailDesc').innerText = data.desc;
+            document.getElementById('detailPrice').innerText = data.price;
+
+            const perksList = document.getElementById('detailPerks');
+            perksList.innerHTML = '';
+            data.perks.forEach(perk => {
+                const li = document.createElement('li');
+                li.innerText = perk;
+                perksList.appendChild(li);
+            });
+
+            document.getElementById('ranksGridView').style.display = 'none';
+            document.getElementById('rankDetailView').style.display = 'block';
+        }
+
+        function backToRanksGrid() {
+            document.getElementById('ranksDetailView').style.display = 'none';
+            document.getElementById('ranksGridView').style.display = 'block';
+        }
+
         function openLoginModal() {
             document.getElementById('loginModal').style.display = 'flex';
         }
@@ -461,18 +654,14 @@
             document.getElementById(modalId).style.display = 'none';
         }
 
-        // Handle Login and Update Navbar with Username
         function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById('mcUsernameInput').value;
-            
             const authArea = document.getElementById('authArea');
             authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;">👤 ${username}</button>`;
-            
             closeModal('loginModal');
         }
 
-        // Tab Switching Logic for Home, Ranks, and Coins
         function switchTab(tabName) {
             const homeSec = document.getElementById('homeSection');
             const ranksSec = document.getElementById('ranksSection');
@@ -496,6 +685,7 @@
             } else if(tabName === 'ranks') {
                 ranksSec.classList.add('active-section');
                 btnRanks.classList.add('active');
+                backToRanksGrid(); // Reset to grid view
             } else if(tabName === 'coins') {
                 coinsSec.classList.add('active-section');
                 btnCoins.classList.add('active');
