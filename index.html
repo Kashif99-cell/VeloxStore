@@ -1,796 +1,129 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChaosPhageSMP | Official Store</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #07090e;
-            color: #ffffff;
-            padding-bottom: 50px;
-        }
-
-        /* Navbar */
-        header {
-            background-color: rgba(22, 25, 37, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .server-logo {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #f59e0b;
-            object-fit: cover;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-        }
-        .brand h1 {
-            font-size: 20px;
-            color: #f59e0b;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
-        }
-        .login-btn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #0d0f17;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-            transition: 0.2s;
-        }
-        .login-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 25px auto;
-            padding: 0 15px;
-        }
-
-        /* Banner Hero */
-        .hero {
-            background: linear-gradient(135deg, #1e1b4b, #2e1065);
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 1px solid #7c3aed;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .banner-logo {
-            width: 95px;
-            height: 95px;
-            border-radius: 50%;
-            border: 3px solid #fbbf24;
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
-        }
-        .hero h2 {
-            font-size: 28px;
-            color: #fbbf24;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .hero p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        /* Navigation Tabs */
-        .category-banners {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-        .cat-card {
-            background: linear-gradient(135deg, #161925, #0f172a);
-            padding: 16px;
-            border-radius: 14px;
-            text-align: center;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            border: 2px solid #2e354f;
-            transition: 0.3s;
-            color: #94a3b8;
-        }
-        .cat-card:hover {
-            border-color: #f59e0b;
-            color: #ffffff;
-        }
-        .cat-card.active {
-            border-color: #f59e0b;
-            color: #f59e0b;
-            background: linear-gradient(135deg, #1e1b4b, #311042);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Orange IP Box */
-        .ip-box-container {
-            background: #161925;
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid #2e354f;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-        .ip-box-container h3 {
-            color: #fbbf24;
-            margin-bottom: 12px;
-            font-size: 20px;
-        }
-        .orange-ip {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #0d0f17;
-            padding: 15px 20px;
-            border-radius: 12px;
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
-            user-select: all;
-            margin-bottom: 15px;
-        }
-        .ip-note {
-            color: #94a3b8;
-            font-size: 13px;
-        }
-
-        .section-heading {
-            font-size: 22px;
-            color: #f59e0b;
-            margin-bottom: 20px;
-            border-left: 4px solid #f59e0b;
-            padding-left: 10px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 18px;
-            margin-bottom: 40px;
-        }
-        .card {
-            background-color: #161925;
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #2e354f;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: 0.3s;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .card:hover {
-            border-color: #f59e0b;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
-        }
-        .rank-img {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
-        }
-        .card h3 {
-            color: #fbbf24;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-        .card p {
-            color: #94a3b8;
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-        .price {
-            font-size: 17px;
-            color: #38bdf8;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .buy-btn {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-            transition: 0.2s;
-        }
-        .buy-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Product Detail View */
-        .product-detail-card {
-            background-color: #161925;
-            border-radius: 16px;
-            padding: 30px;
-            border: 1px solid #3b4261;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        }
-        .detail-banner-img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
-        }
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #2e354f;
-            padding-bottom: 20px;
-        }
-        .product-title-area h2 {
-            color: #fbbf24;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        .product-title-area p {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-        .product-pricing-area {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .product-price {
-            font-size: 24px;
-            color: #38bdf8;
-            font-weight: bold;
-        }
-        .quick-buy-btn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #0d0f17;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-            transition: 0.2s;
-        }
-        .quick-buy-btn:hover {
-            transform: scale(1.05);
-        }
-        .perks-list {
-            list-style: none;
-            color: #cbd5e1;
-            font-size: 14px;
-            line-height: 2;
-        }
-        .perks-list li::before {
-            content: "— ";
-            color: #f59e0b;
-            font-weight: bold;
-        }
-        .back-link {
-            display: inline-block;
-            color: #38bdf8;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-weight: bold;
-            padding: 8px 14px;
-            background: #161925;
-            border: 1px solid #3b4261;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
-        .back-link:hover {
-            background: #1e293b;
-        }
-
-        .store-section {
-            display: none;
-        }
-        .store-section.active-section {
-            display: block;
-        }
-
-        /* Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-box {
-            background: #161925;
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            border: 1px solid #3b4261;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-        .modal-box h3 {
-            color: #f59e0b;
-            margin-bottom: 18px;
-            font-size: 20px;
-        }
-        .form-group {
-            text-align: left;
-            margin-bottom: 14px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            color: #cbd5e1;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 11px;
-            border-radius: 8px;
-            border: 1px solid #3b4261;
-            background: #0d0f17;
-            color: #ffffff;
-            outline: none;
-            transition: 0.2s;
-        }
-        .form-group input:focus {
-            border-color: #f59e0b;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
-        }
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #0d0f17;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-        }
-        .discord-btn {
-            display: block;
-            background-color: #5865F2;
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 15px 0 10px 0;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
-            transition: 0.2s;
-        }
-        .discord-btn:hover {
-            opacity: 0.9;
-        }
-        .close-btn {
-            background-color: #ef4444;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-        .close-btn:hover {
-            opacity: 0.9;
-        }
-        footer {
-            text-align: center;
-            color: #64748b;
-            font-size: 13px;
-            margin-top: 40px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELOXSTORE | Gaming Store</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ background:#050914;
+ color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#080f20;
+ padding:20px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid #087cff;
+}
+.logo{font-size:25px;font-weight:bold;color:#168cff}
+nav a{
+ color:white;text-decoration:none;
+ margin-left:12px;font-size:13px;
+}
+.hero{
+ text-align:center;padding:75px 15px;
+ background:linear-gradient(135deg,#07152d,#002c65);
+}
+.hero h1{font-size:38px;color:#168cff}
+.hero p{margin:15px;color:#cbd5e1}
+.btn{
+ display:inline-block;background:#087cff;
+ color:white;padding:13px 25px;
+ border-radius:8px;text-decoration:none;
+ margin-top:15px;font-weight:bold;
+}
+section{padding:45px 18px}
+h2{text-align:center;color:#168cff;margin-bottom:28px}
+.products{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:18px;max-width:900px;margin:auto;
+}
+.card{
+ background:#101b30;
+ border:1px solid #164477;
+ padding:25px;border-radius:14px;
+ text-align:center;
+}
+.card h3{color:#42a5ff;margin-bottom:12px}
+.card p{color:#cbd5e1;line-height:1.7}
+.price{font-size:22px;color:#36a0ff;margin:15px}
+.contact{text-align:center;background:#0b1426}
+footer{
+ text-align:center;padding:20px;
+ color:#94a3b8;background:#050914;
+}
+</style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="brand">
-            <img src="logo.png" alt="Logo" class="server-logo">
-            <h1>ChaosPhageSMP</h1>
-        </div>
-        <div id="authArea">
-            <button id="loginNavBtn" onclick="openLoginModal()" class="login-btn">➡️ Login</button>
-        </div>
-    </header>
+<header>
+<div class="logo">VELOXSTORE</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#ranks">Ranks</a>
+<a href="#coins">Coins</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <img src="logo.png" alt="ChaosPhageSMP Logo" class="banner-logo">
-            <div>
-                <h2>Welcome to ChaosPhageSMP</h2>
-                <p>Official Minecraft Server Store & Community</p>
-            </div>
-        </div>
+<div class="hero" id="home">
+<h1>WELCOME TO VELOXSTORE</h1>
+<p>Your Gaming World Starts Here!</p>
+<a href="#ranks" class="btn">Explore Store</a>
+</div>
 
-        <!-- Navigation Tabs -->
-        <div class="category-banners">
-            <div id="btnHome" class="cat-card active" onclick="switchTab('home')">🏠 HOME</div>
-            <div id="btnRanks" class="cat-card" onclick="switchTab('ranks')">👑 RANKS</div>
-            <div id="btnCoins" class="cat-card" onclick="switchTab('coins')">🪙 COINS</div>
-        </div>
+<section id="ranks">
+<h2>⚡ MINECRAFT RANKS</h2>
+<div class="products">
+<div class="card">
+<h3>VIP RANK</h3>
+<p>Special VIP perks<br>VIP Tag<br>Exclusive Benefits</p>
+<div class="price">Coming Soon</div>
+</div>
+<div class="card">
+<h3>BOSS RANK</h3>
+<p>Special Boss perks<br>Boss Tag<br>Exclusive Benefits</p>
+<div class="price">Coming Soon</div>
+</div>
+<div class="card">
+<h3>OWNER RANK</h3>
+<p>Special Owner perks<br>Owner Tag<br>Exclusive Benefits</p>
+<div class="price">Coming Soon</div>
+</div>
+</div>
+</section>
 
-        <!-- HOME SECTION -->
-        <div id="homeSection" class="store-section active-section">
-            <h2 class="section-heading">🌟 SERVER INFORMATION</h2>
-            
-            <div class="ip-box-container">
-                <h3>Server IP Address</h3>
-                <div class="orange-ip">chaosphagesmp.play.hosting</div>
-                <p class="ip-note">Click karke copy karein aur Minecraft Java/Bedrock mein join karein!</p>
-            </div>
+<section id="coins">
+<h2>💎 MINECRAFT COINS</h2>
+<div class="products">
+<div class="card">
+<h3>1000 COINS</h3>
+<p>Minecraft Server Coins</p>
+<div class="price">Coming Soon</div>
+</div>
+<div class="card">
+<h3>5000 COINS</h3>
+<p>Minecraft Server Coins</p>
+<div class="price">Coming Soon</div>
+</div>
+</div>
+</section>
 
-            <div class="ip-box-container">
-                <h3>Official Discord Community</h3>
-                <p style="color:#cbd5e1; margin-bottom:15px; font-size:14px;">Hamare Discord server ko join karke support ticket banayein aur giveaway mein hissa lein!</p>
-                <a href="https://discord.gg/wKtxE5AfU" target="_blank" class="discord-btn">Join Discord Server</a>
-            </div>
-        </div>
+<section class="contact" id="contact">
+<h2>CONTACT US</h2>
+<p>Interested in our products?</p>
+<p>Contact VELOXSTORE for more information.</p>
+</section>
 
-        <!-- RANKS SECTION -->
-        <div id="ranksSection" class="store-section">
-            
-            <!-- Ranks Grid View -->
-            <div id="ranksGridView">
-                <h2 class="section-heading">👑 SERVER RANKS</h2>
-                <div class="grid-container">
-                    <div class="card" onclick="showRankDetail('vip')">
-                        <img src="https://assets.badlion.net/site/store/ranks/vip.png" alt="VIP" class="rank-img" onerror="this.src='logo.png'">
-                        <h3>VIP RANK</h3>
-                        <p>Special VIP privileges</p>
-                        <div class="price">Rs. 200</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                    <div class="card" onclick="showRankDetail('vipplus')">
-                        <img src="https://assets.badlion.net/site/store/ranks/vip_plus.png" alt="VIP+" class="rank-img" onerror="this.src='logo.png'">
-                        <h3>VIP+ RANK</h3>
-                        <p>Advanced VIP perks</p>
-                        <div class="price">Rs. 400</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                    <div class="card" onclick="showRankDetail('mvp')">
-                        <img src="https://assets.badlion.net/site/store/ranks/mvp.png" alt="MVP" class="rank-img" onerror="this.src='logo.png'">
-                        <h3>MVP RANK</h3>
-                        <p>Exclusive MVP privileges</p>
-                        <div class="price">Rs. 700</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                    <div class="card" onclick="showRankDetail('mvpplus')">
-                        <img src="https://assets.badlion.net/site/store/ranks/mvp_plus.png" alt="MVP+" class="rank-img" onerror="this.src='logo.png'">
-                        <h3>MVP+ RANK</h3>
-                        <p>Premium perks & features</p>
-                        <div class="price">Rs. 1200</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                    <div class="card" onclick="showRankDetail('legend')">
-                        <img src="https://assets.badlion.net/site/store/ranks/legend.png" alt="LEGEND" class="rank-img" onerror="this.src='logo.png'">
-                        <h3>LEGEND RANK</h3>
-                        <p>Ultimate server rank</p>
-                        <div class="price">Rs. 2500</div>
-                        <button class="buy-btn">View Perks</button>
-                    </div>
-                </div>
-            </div>
+<footer>
+© 2026 VELOXSTORE | All Rights Reserved
+</footer>
 
-            <!-- Rank Detail View -->
-            <div id="rankDetailView" style="display: none;">
-                <span class="back-link" onclick="backToRanksGrid()">⬅️ Back to Ranks</span>
-                
-                <div class="product-detail-card">
-                    <img id="detailImg" src="" alt="Rank Banner" class="detail-banner-img">
-                    <div class="product-header">
-                        <div class="product-title-area">
-                            <h2 id="detailTitle">VIP RANK</h2>
-                            <p id="detailDesc">Special VIP privileges for ChaosPhageSMP</p>
-                        </div>
-                        <div class="product-pricing-area">
-                            <div class="product-price" id="detailPrice">Rs. 200</div>
-                            <button class="quick-buy-btn" onclick="openBuyModal(document.getElementById('detailTitle').innerText)">Quick Buy</button>
-                        </div>
-                    </div>
-
-                    <h3 style="color: #f59e0b; margin-bottom: 12px; font-size: 16px;">ABOUT THIS PRODUCT (PERKS & COMMANDS)</h3>
-                    <ul class="perks-list" id="detailPerks">
-                        <!-- Perks injected via JS -->
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- COINS SECTION -->
-        <div id="coinsSection" class="store-section">
-            <h2 class="section-heading">🪙 SERVER COINS</h2>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>50 COINS</h3>
-                    <p>In-game coins pack</p>
-                    <div class="price">Rs. 250</div>
-                    <button onclick="openBuyModal('50 Coins')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>100 COINS</h3>
-                    <p>In-game coins pack</p>
-                    <div class="price">Rs. 500</div>
-                    <button onclick="openBuyModal('100 Coins')" class="buy-btn">Buy Now</button>
-                </div>
-                <div class="card">
-                    <h3>1000 COINS</h3>
-                    <p>In-game mega coins pack</p>
-                    <div class="price">Rs. 2000</div>
-                    <button onclick="openBuyModal('1000 Coins')" class="buy-btn">Buy Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 ChaosPhageSMP. All Rights Reserved.
-    </footer>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3>Player Account Sign In</h3>
-            
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="example@mail.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Enter password" required>
-                </div>
-                <div class="form-group">
-                    <label>In-Game Minecraft Username</label>
-                    <input type="text" id="mcUsernameInput" placeholder="Minecraft Username" required>
-                </div>
-                <div class="form-group">
-                    <label>Discord Username</label>
-                    <input type="text" placeholder="username#0000" required>
-                </div>
-                
-                <button type="submit" class="submit-btn">Login Account</button>
-            </form>
-
-            <button onclick="closeModal('loginModal')" class="close-btn">Close</button>
-        </div>
-    </div>
-
-    <!-- Buy Item Modal -->
-    <div id="buyModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3 id="buyModalTitle">Purchase Item</h3>
-            <p style="color:#cbd5e1; font-size:14px; margin-bottom:15px;">Order place karne ke liye Discord server join karke ticket create karein!</p>
-            <a href="https://discord.gg/wKtxE5AfU" target="_blank" class="discord-btn">Join Discord Server</a>
-            <button onclick="closeModal('buyModal')" class="close-btn">Close</button>
-        </div>
-    </div>
-
-    <script>
-        window.onload = function() {
-            const savedUser = localStorage.getItem('chaos_username');
-            if (savedUser) {
-                setLoggedInUI(savedUser);
-            }
-        };
-
-        const rankData = {
-            vip: {
-                title: "VIP RANK",
-                desc: "Special VIP privileges for ChaosPhageSMP",
-                price: "Rs. 200",
-                img: "https://assets.badlion.net/site/store/ranks/vip.png",
-                perks: [
-                    "Access to /workbench",
-                    "Access to /enderchest",
-                    "Access to /feed",
-                    "5 Homes limit",
-                    "VIP Prefix in chat",
-                    "Access to VIP Kit"
-                ]
-            },
-            vipplus: {
-                title: "VIP+ RANK",
-                desc: "Advanced VIP perks and utilities",
-                price: "Rs. 400",
-                img: "https://assets.badlion.net/site/store/ranks/vip_plus.png",
-                perks: [
-                    "Access to /workbench & /anvil",
-                    "Access to /enderchest",
-                    "Access to /ptime",
-                    "10 Homes limit",
-                    "VIP+ Prefix in chat",
-                    "Access to VIP+ Kit"
-                ]
-            },
-            mvp: {
-                title: "MVP RANK",
-                desc: "Exclusive MVP privileges & commands",
-                price: "Rs. 700",
-                img: "https://assets.badlion.net/site/store/ranks/mvp.png",
-                perks: [
-                    "Access to Premium Shop",
-                    "Access to /workbench, /anvil, /grindstone",
-                    "Access to /enderchest & /ptime",
-                    "No RTP cooldown",
-                    "20 Homes limit",
-                    "MVP Prefix & Kit"
-                ]
-            },
-            mvpplus: {
-                title: "MVP+ RANK",
-                desc: "Premium perks and enhanced features",
-                price: "Rs. 1200",
-                img: "https://assets.badlion.net/site/store/ranks/mvp_plus.png",
-                perks: [
-                    "Access to Premium Shop",
-                    "Access to /workbench, /anvil, /grindstone, /disposal",
-                    "Access to /enderchest & /ptime",
-                    "No RTP cooldown",
-                    "Queue Bypass",
-                    "35 Homes limit",
-                    "MVP+ Prefix & Kit"
-                ]
-            },
-            legend: {
-                title: "LEGEND RANK",
-                desc: "Ultimate server rank with all permissions",
-                price: "Rs. 2500",
-                img: "https://assets.badlion.net/site/store/ranks/legend.png",
-                perks: [
-                    "Access to Premium Shop",
-                    "All utility commands (/workbench, /anvil, /grindstone, /disposal, /loom)",
-                    "Access to /enderchest, /ptime, /pweather",
-                    "No RTP cooldown",
-                    "Queue Bypass",
-                    "60 Homes limit",
-                    "LEGEND++ Prefix & Kit"
-                ]
-            }
-        };
-
-        function showRankDetail(rankKey) {
-            const data = rankData[rankKey];
-            document.getElementById('detailTitle').innerText = data.title;
-            document.getElementById('detailDesc').innerText = data.desc;
-            document.getElementById('detailPrice').innerText = data.price;
-            document.getElementById('detailImg').src = data.img;
-
-            const perksList = document.getElementById('detailPerks');
-            perksList.innerHTML = '';
-            data.perks.forEach(perk => {
-                const li = document.createElement('li');
-                li.innerText = perk;
-                perksList.appendChild(li);
-            });
-
-            document.getElementById('ranksGridView').style.display = 'none';
-            document.getElementById('rankDetailView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function backToRanksGrid() {
-            document.getElementById('rankDetailView').style.display = 'none';
-            document.getElementById('ranksGridView').style.display = 'block';
-        }
-
-        function openLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
-        }
-        function openBuyModal(itemName) {
-            document.getElementById('buyModalTitle').innerText = "Buy " + itemName;
-            document.getElementById('buyModal').style.display = 'flex';
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const username = document.getElementById('mcUsernameInput').value;
-            localStorage.setItem('chaos_username', username);
-            setLoggedInUI(username);
-            closeModal('loginModal');
-        }
-
-        function setLoggedInUI(username) {
-            const authArea = document.getElementById('authArea');
-            authArea.innerHTML = `<button class="login-btn" style="background-color: #10b981; color: white; cursor: default;" onclick="handleLogout()" title="Click to Logout">👤 ${username} 🔄</button>`;
-        }
-
-        function handleLogout() {
-            if(confirm("Kya aap account logout karna chahte hain?")) {
-                localStorage.removeItem('chaos_username');
-                location.reload();
-            }
-        }
-
-        function switchTab(tabName) {
-            const homeSec = document.getElementById('homeSection');
-            const ranksSec = document.getElementById('ranksSection');
-            const coinsSec = document.getElementById('coinsSection');
-            
-            const btnHome = document.getElementById('btnHome');
-            const btnRanks = document.getElementById('btnRanks');
-            const btnCoins = document.getElementById('btnCoins');
-
-            homeSec.classList.remove('active-section');
-            ranksSec.classList.remove('active-section');
-            coinsSec.classList.remove('active-section');
-            
-            btnHome.classList.remove('active');
-            btnRanks.classList.remove('active');
-            btnCoins.classList.remove('active');
-
-            if(tabName === 'home') {
-                homeSec.classList.add('active-section');
-                btnHome.classList.add('active');
-            } else if(tabName === 'ranks') {
-                ranksSec.classList.add('active-section');
-                btnRanks.classList.add('active');
-                backToRanksGrid();
-            } else if(tabName === 'coins') {
-                coinsSec.classList.add('active-section');
-                btnCoins.classList.add('active');
-            }
-        }
-    </script>
 </body>
 </html>
